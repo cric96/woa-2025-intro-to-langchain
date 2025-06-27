@@ -1,0 +1,29 @@
+[project]
+name = "woa-2025-intro-to-langchain"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Gianluca Aguzzi",email = "gianluca.aguzzi@studio.unibo.it"}
+]
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "jupyterlab-rise",
+    "langchain>=0.3.0,<0.4.0",
+    "langchain-ollama>=0.3.0,<0.4.0",
+    "langchain-community",
+    "langchain-google-genai (>=2.1.0,<2.2.0)",
+    "docarray",
+    "dotenv (>=0.9.9,<0.10.0)",
+    "pandas (>=2.1.0,<3.0.0)",
+    "scikit-learn (>=1.4.0,<2.0.0)",
+    "matplotlib (>=3.9.0,<4.0.0)",
+]
+
+[tool.poetry]
+packages = [{include = "woa_2025_intro_to_langchain", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
