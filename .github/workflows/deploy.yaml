@@ -33,8 +33,13 @@ jobs:
       - name: Prepare deployment folder
         run: |
           mkdir public
+          mkdir public/data
           mv presentation.slides.html public/index.html
-
+      
+      - name: Move data
+        run: |
+          mv data/* public/data/
+    
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
