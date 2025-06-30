@@ -1,0 +1,45 @@
+name: Build and Deploy Jupyter Slides
+
+on:
+  push:
+    branches:
+      - main  # change to your default branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Install dependencies with Poetry
+        run: poetry install --no-root
+
+      - name: Convert notebook to slides
+        run: |
+          poetry run jupyter nbconvert presentation.ipynb --to slides --config jupyter_nbconvert_config.py --reveal-prefix "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1"
+
+      - name: Prepare deployment folder
+        run: |
+          mkdir public
+          mv presentation.slides.html public/index.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
+          force_orphan: true
+          keep_files: false
