@@ -7,3 +7,14 @@ In this lesson, we will explore the fundamental principles of building applicati
 This repository works both as slides and as a code repository. The slides are available in the `presentation.ipynb` file, which can be opened in Jupyter Notebook or any compatible environment. 
 
 The slides are generated via `nbconvert`, and the code is organized in a way that allows you to follow along with the examples presented in the slides.
+
+## Requirements
+- Ollama: https://ollama.com/
+- Poetry: https://python-poetry.org/
+## How to run?
+Please type:
+```bash
+poetry lock
+poetry install
+poetry run jupyter lab
+```
